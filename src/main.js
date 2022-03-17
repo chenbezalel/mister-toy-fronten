@@ -5,7 +5,8 @@ import store from './store'
 import ElementPlus from 'element-plus'
 import VueGoogleMaps from '@fawmi/vue-google-maps'
 import 'element-plus/dist/index.css'
-import './styles/styles.css'
+import './styles/styles.scss' 
+// import './styles/styles.css'
 
 const app = createApp(App)
 
@@ -14,7 +15,7 @@ app.use(store)
 app.use(ElementPlus)
 app.use(VueGoogleMaps, {
     load: {
-       key: 'YOUR_API_KEY_COMES_HERE',
+       key: 'AIzaSyD-C-KE6wCYKK1gUuuPYAkVXIaNl7xpRmI',
     },
  })
 

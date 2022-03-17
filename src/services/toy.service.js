@@ -1,12 +1,9 @@
-// import { json } from "stream/consumers";
-import { storageService } from "./async-storage-service.js";
 import { utilService } from "./util.service.js";
 import axios from 'axios'
 
-const KEY = 'toys'
-const TOY_URL = 'http://127.0.0.1:3030/api/toy/'
-const labels = ["On wheels", "Box game", "Art", "Baby", "Doll", "Puzzle", "Outdoor"]
-// _createToys()
+const BASE_URL = (process.env.NODE_ENV !== 'development') 
+? '/api/toy/' 
+: '//localhost:3030/api/toy/';
 
 export const toyService = {
     query,
@@ -16,29 +13,49 @@ export const toyService = {
     getEmptyToy,
 }
 
-function query(filterBy) {
-    return axios.get(TOY_URL, {params: filterBy})
-        .then(res => res.data)
+async function query(filterBy) {
+    try{
+        const res = await axios.get(BASE_URL, {params: filterBy})
+        return res.data
+    } catch (err){
+        console.log('err in toyService in query:', err);
+    }
+
     // return storageService.query(KEY)
   }
   
-  function getById(toyId) {
-    return axios.get(TOY_URL + toyId)
-    .then(res => res.data)
+  async function getById(toyId) {
+    try{
+        const res = await axios.get(BASE_URL + toyId)
+        return res.data
+    } catch (err) {
+        console.log('err in toyService in getById:', err);
+    }
     // return storageService.get(KEY, toyId)
   }
   
-  function remove(toyId) {
-    return axios.delete(TOY_URL + toyId)
+  async function remove(toyId) {
+    return await axios.delete(BASE_URL + toyId)
     // return storageService.remove(KEY, toyId)
   }
   
-  function save(toy) {
+  async function save(toy) {
     if (toy._id) {
-        return axios.put(TOY_URL + toy._id, toy).then((res) => res.data)
+        try{
+            const res = await axios.put(BASE_URL + toy._id, toy)
+            return res.data
+        } catch {
+            console.log('err in toyService in edit:', err);
+        }
         // return storageService.put(CAR_KEY, car)
     } else {
-        return axios.post(TOY_URL, toy).then((res) => res.data)
+        try{
+            const res = await axios.post(BASE_URL, toy)
+            return res.data
+        } catch {
+            console.log('err in toyService in add:', err);
+        }
+
         // return storageService.post(CAR_KEY, car)
     }
 
@@ -48,11 +65,11 @@ function query(filterBy) {
   
   function getEmptyToy() {
     return {
-        _id: '',
+        // _id: '',
         name: '',
         price: '',
         labels: ["On wheels", "Battery Powered", "Baby"],
-        createdAt: Date.now(),
+        // createdAt: Date.now(),
         inStock: true
     }
   }

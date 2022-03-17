@@ -16,24 +16,7 @@ export default {
   components: { DoughnutChart },
   data() {
     return {
-        testData: {
-          labels: JSON.parse(JSON.stringify(this.$store.getters.labels)),
-          datasets: [
-            {
-              data: [],
-              backgroundColor: [
-                "#77CEFF",
-                "#0079AF",
-                "#123E6B",
-                "#97B0C4",
-                "#A5C8ED",
-                "#33C8ED",
-                "#A533ED",
-                "#A53333",
-              ],
-            },
-          ],
-        },
+        data: [],
     };
   },
   created() {
@@ -41,46 +24,39 @@ export default {
       this.prices(toys);
     });
   },
-  mounted() {},
   computed: {
     toys() {
       return this.$store.getters.toys;
     },
-    // testData() {
-    //   return {
-    //     labels: JSON.parse(JSON.stringify(this.$store.getters.labels)),
-    //     datasets: [
-    //       {
-    //         data: [],
-    //         backgroundColor: [
-    //           "#77CEFF",
-    //           "#0079AF",
-    //           "#123E6B",
-    //           "#97B0C4",
-    //           "#A5C8ED",
-    //           "#33C8ED",
-    //           "#A533ED",
-    //           "#A53333",
-    //         ],
-    //       },
-    //     ],
-    //   };
-    // },
+    testData() {
+      return {
+        labels: this.$store.getters.labels,
+        datasets: [
+          {
+            data: [...this.data],
+            backgroundColor: [
+              '#77CEFF',
+              '#0079AF',
+              '#123E6B',
+              '#97B0C4',
+              '#A5C8ED',
+              '#33C8ED',
+              '#A533ED',
+              '#A53333',
+            ],
+          },
+        ],
+      }
+    },
   },
   methods: {
     prices(toys) {
-      //   const toysCopy = this.toys;
-      console.log("toys:", toys);
       this.testData.labels.forEach((label) => {
         var sumPrice = toys.reduce((acc, toy) => {
           if (toy.labels.includes(label)) acc += toy.price;
           return acc;
         }, 0);
-        this.testData.datasets[0].data.push(sumPrice);
-        console.log(
-          "this.testData.datasets[0].data:",
-          this.testData.datasets[0].data
-        );
+       this.data.push(sumPrice)
       });
     },
   },

@@ -4,7 +4,7 @@ export default {
   state: {
     toys: null,
     filterBy: null,
-    labels: ["On wheels", "Box game","Art", "Baby", "Doll", "Puzzle", "Outdoor"],
+    labels: ["On wheels", "Box game", "Art", "Baby", "Doll", "Puzzle", "Outdoor"],
   },
   getters: {
     toys(state) {
@@ -35,27 +35,21 @@ export default {
     },
   },
   actions: {
-    loadToys({ commit , state }) {
-      return toyService.query(state.filterBy)
-        .then((toys) => {
-          commit({ type: 'setToys', toys })
-          return toys
-        })
+    async loadToys({ commit, state }) {
+      const toys = await toyService.query(state.filterBy)
+      commit({ type: 'setToys', toys })
+      return toys
     },
-    removeToy({ commit }, { toyId }) {
-      toyService.remove(toyId)
-        .then(() => {
-          commit({ type: 'removeToy', toyId })
-        })
+    async removeToy({ commit }, { toyId }) {    
+      await toyService.remove(toyId)
+      commit({ type: 'removeToy', toyId })
     },
     getById(context, { id }) {
       return toyService.getById(id)
     },
-    saveToy({commit}, { toyToSave }) {
-      return toyService.save(toyToSave)
-        .then((savedToy) => {
+    async saveToy({ commit }, { toyToSave }) {
+      const savedToy = await toyService.save(toyToSave)
           commit({ type: 'saveToy', savedToy })
-        })
     },
     filter({ commit, dispatch }, { filterBy }) {
       console.log(filterBy);

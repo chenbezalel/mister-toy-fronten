@@ -13,32 +13,29 @@
 </template>
 
 <script>
-import { toyService } from "../services/toy.service.js"
+import { toyService } from "../services/toy.service.js";
 
 export default {
-  name: 'toy-detail',
+  name: "toy-detail",
   data() {
     return {
       toy: null,
-    }
+    };
   },
-  created() {
-    const { id } = this.$route.params
-    toyService.getById(id)
-    .then((toy) => {
-        this.toy = toy
-    })
+  async created() {
+    const { id } = this.$route.params;
+    const toy = await toyService.getById(id);
+    this.toy = toy;
   },
   methods: {
     goBack() {
-      this.$router.push('/toy')
+      this.$router.push("/toy");
     },
   },
-  computed:{
-    isInStock(){
-        return this.toy.inStock? 'yes' : 'no'
+  computed: {
+    isInStock() {
+      return this.toy.inStock ? "yes" : "no";
     },
-    
-  }
-}
+  },
+};
 </script>

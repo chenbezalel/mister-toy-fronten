@@ -1,6 +1,7 @@
 <template>
-  <section class="home">
-      <h1>home page</h1>
+  <section class="home-page">
+      <h1>Welcome to my toy shop!</h1>
+      <img src="../imgs/toys.png">
   </section>
 </template>
 

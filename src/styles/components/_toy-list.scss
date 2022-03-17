@@ -1,0 +1,20 @@
+.toy-list{
+    max-width: 80%;
+    margin: auto;
+
+    ul{
+        display: flex;
+        gap: 30px;
+        flex-wrap: wrap;
+    }
+
+    li{
+        list-style: none;
+        border: 2px solid rgb(114, 111, 111);
+        background-color: white;
+        border-radius: 10px;
+        width: 200px;
+        text-align: center;
+    }
+
+}

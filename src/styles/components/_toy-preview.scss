@@ -1,0 +1,42 @@
+.toy-preview{
+
+    .toy-title{
+    font-size: 1.2em;
+    color: brown;
+    text-transform: capitalize;
+    }
+
+    p {
+        span{
+            font-weight: bold;
+        }
+    }
+    
+    .remove-toy, .details-btn, .edit-btn{
+        margin-bottom: 10px;
+        background-color: inherit;
+        border-radius: 3px;
+        cursor: pointer;
+        padding: 5px;
+        text-decoration: none;
+        color: black;
+        font-family: roboto-regular;
+        font-size: 0.8em;
+        margin-inline: 5px;
+    }
+
+    .remove-toy{
+        border: 1px solid rgb(251, 40, 40);
+    }
+    
+    .details-btn{
+        border: 1px solid rgb(40, 149, 251);
+    }
+    
+    .edit-btn{
+        border: 1px solid rgb(155, 216, 42);
+    }
+
+
+}
+
