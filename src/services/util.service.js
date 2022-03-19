@@ -15,17 +15,22 @@ function getRandomInt(min, max) {
   }
 
   function saveToStorage(key, value) {
-    localStorage.setItem(key, JSON.stringify(value) || null)
-  }
-  
-  function loadFromStorage(key) {
-    let data = localStorage.getItem(key)
-    return data ? JSON.parse(data) : undefined
-  }
+    sessionStorage.setItem(key, JSON.stringify(value) || null);
+}
+
+function loadFromStorage(key) {
+  let data = sessionStorage.getItem(key);
+  return (data) ? JSON.parse(data) : undefined;
+}
+
+function removeFromStorage(key) {
+  sessionStorage.removeItem(key);
+}
 
 export const utilService = {
     makeId,
     getRandomInt,
     saveToStorage,
-    loadFromStorage
+    loadFromStorage,
+    removeFromStorage
 }

@@ -1,6 +1,8 @@
 import { utilService } from "./util.service.js";
 import axios from 'axios'
 
+axios.defaults.withCredentials = true
+
 const BASE_URL = (process.env.NODE_ENV !== 'development') 
 ? '/api/toy/' 
 : '//localhost:3030/api/toy/';

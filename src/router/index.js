@@ -5,6 +5,7 @@ import toyDetails from '../views/toy-details.vue'
 import toyEdit from '../views/toy-edit.vue'
 import dashboard from '../views/dashboard.vue'
 import about from '../views/about-page.vue'
+import login from '../views/login.vue'
 
 
 const router = createRouter({
@@ -39,6 +40,11 @@ const router = createRouter({
       path: '/dashboard',
       name: 'dashboard',
       component: dashboard,
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: login,
     },
   ]
 })

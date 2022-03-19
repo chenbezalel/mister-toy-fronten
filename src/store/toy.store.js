@@ -40,17 +40,21 @@ export default {
       commit({ type: 'setToys', toys })
       return toys
     },
-    async removeToy({ commit }, { toyId }) {    
+
+    async removeToy({ commit }, { toyId }) {
       await toyService.remove(toyId)
       commit({ type: 'removeToy', toyId })
     },
+
     getById(context, { id }) {
       return toyService.getById(id)
     },
+
     async saveToy({ commit }, { toyToSave }) {
       const savedToy = await toyService.save(toyToSave)
-          commit({ type: 'saveToy', savedToy })
+      commit({ type: 'saveToy', savedToy })
     },
+    
     filter({ commit, dispatch }, { filterBy }) {
       console.log(filterBy);
       commit({ type: 'setFilter', filterBy });

@@ -1,0 +1,38 @@
+.login-page{
+    max-width: 80%;
+    text-align: center;
+    margin: 20px auto;
+    .login-form{
+        padding: 10px;
+        width: 350px;
+        height: 200px;
+        border: 1px solid gray;
+        border-radius: 5px;
+        background-color: white;
+        margin: auto;
+        
+        input{
+            margin-block: 5px;
+            width: 300px;
+            margin-inline: auto;
+            border: 1px solid rgb(56, 56, 56);
+        }
+
+        .login-btn{
+            border-radius: 5px;
+            background-color: rgb(58, 123, 245);
+            color: white;
+            border: none;
+            width: 80px;
+            height: 30px;
+            margin-top: 10px;
+            
+            &:hover{
+                background-color: rgb(120, 164, 245);
+                transition: .3s;
+                cursor: pointer;
+            }
+        }
+    }
+
+}
