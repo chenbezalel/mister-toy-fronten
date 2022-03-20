@@ -56,7 +56,6 @@ export default {
     },
     
     filter({ commit, dispatch }, { filterBy }) {
-      console.log(filterBy);
       commit({ type: 'setFilter', filterBy });
       dispatch({ type: 'loadToys' });
     },

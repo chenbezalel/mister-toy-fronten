@@ -1,11 +1,9 @@
 import { utilService } from "./util.service.js";
-import axios from 'axios'
+// import { httpService } from './http.service'
+import { httpService } from "./http.service.js";
 
-axios.defaults.withCredentials = true
 
-const BASE_URL = (process.env.NODE_ENV !== 'development') 
-? '/api/toy/' 
-: '//localhost:3030/api/toy/';
+const BASE_URL = 'toy/';
 
 export const toyService = {
     query,
@@ -17,8 +15,9 @@ export const toyService = {
 
 async function query(filterBy) {
     try{
-        const res = await axios.get(BASE_URL, {params: filterBy})
-        return res.data
+        // const res = await axios.get(BASE_URL, {params: filterBy})
+        // return res.data
+        return httpService.get(BASE_URL, filterBy)
     } catch (err){
         console.log('err in toyService in query:', err);
     }
@@ -28,8 +27,9 @@ async function query(filterBy) {
   
   async function getById(toyId) {
     try{
-        const res = await axios.get(BASE_URL + toyId)
-        return res.data
+        // const res = await axios.get(BASE_URL + toyId)
+        // return res.data
+        return httpService.get(BASE_URL + toyId)
     } catch (err) {
         console.log('err in toyService in getById:', err);
     }
@@ -37,23 +37,26 @@ async function query(filterBy) {
   }
   
   async function remove(toyId) {
-    return await axios.delete(BASE_URL + toyId)
+    return httpService.delete(BASE_URL + toyId)
+    // return await axios.delete(BASE_URL + toyId)
     // return storageService.remove(KEY, toyId)
   }
   
   async function save(toy) {
     if (toy._id) {
         try{
-            const res = await axios.put(BASE_URL + toy._id, toy)
-            return res.data
+            // const res = await axios.put(BASE_URL + toy._id, toy)
+            // return res.data
+            return httpService.put(BASE_URL + toy._id, toy)
         } catch {
             console.log('err in toyService in edit:', err);
         }
         // return storageService.put(CAR_KEY, car)
     } else {
         try{
-            const res = await axios.post(BASE_URL, toy)
-            return res.data
+            // const res = await axios.post(BASE_URL, toy)
+            // return res.data
+            return httpService.post(BASE_URL, toy)
         } catch {
             console.log('err in toyService in add:', err);
         }

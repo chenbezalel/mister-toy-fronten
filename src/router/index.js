@@ -6,6 +6,8 @@ import toyEdit from '../views/toy-edit.vue'
 import dashboard from '../views/dashboard.vue'
 import about from '../views/about-page.vue'
 import login from '../views/login.vue'
+import userDetails from '../views/user-details.vue'
+import reviewsExplore from '../views/reviews-explore.vue'
 
 
 const router = createRouter({
@@ -46,6 +48,17 @@ const router = createRouter({
       name: 'login',
       component: login,
     },
+    {
+      path: '/reviews',
+      name: 'reviews',
+      component: reviewsExplore
+      ,
+    },
+    {
+      path: '/user/:id',
+      name: 'user-details',
+      component: userDetails
+    }
   ]
 })
 

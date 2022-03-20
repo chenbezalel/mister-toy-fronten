@@ -1,7 +1,8 @@
 <template>
   <section class="toy-app" v-if="toys">
     <toy-filter @setFilter="setFilter" />
-    <button @click="goToEdit" class="add-toy-btn">Add a new toy</button>
+    <router-link class="user-details" :to="'/user/' + loggedInUser._id">{{loggedInUser.username}}</router-link>
+    <button v-if="loggedinUser && loggedinUser.isAdmin" @click="goToEdit" class="add-toy-btn">Add a new toy</button>
     <toy-list :toys="toys" @removeToy="removeToy" />
   </section>
 </template>
@@ -17,9 +18,17 @@ export default {
     toyList,
     toyFilter,
   },
+  data(){
+    return{
+      loggedinUser: this.$store.getters.user,
+    }
+  },
   computed: {
     toys() {
       return this.$store.getters.toys;
+    },
+    loggedInUser() {
+      return this.$store.getters.user;
     },
   },
   methods: {

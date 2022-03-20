@@ -2,7 +2,7 @@
   <section class="toy-filter">
     <input
       type="search"
-      @change="setFilter"
+      @input="setFilter"
       v-model="filterBy.name"
       placeholder="Search toy"
     />

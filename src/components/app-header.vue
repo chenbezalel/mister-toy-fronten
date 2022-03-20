@@ -6,6 +6,7 @@
     <nav>
       <router-link class="link" to="/">Home</router-link> |
       <router-link class="link" to="/toy">Toys</router-link> |
+      <router-link class="link" to="/reviews">Reviews</router-link> |
       <router-link class="link" to="/dashboard">Info</router-link> |
       <router-link class="link" to="/about">About</router-link> |
       <router-link class="link" to="/login">Login</router-link>
